@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "I Need-speed",
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "version": "0.1.0",
+  "description": "My Chrome Extension",
+  "icons": {
+    "128": "icons/icon_128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "I Need-speed",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ]
+}

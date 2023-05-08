@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>I need speed</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+  <div class="app">
+    <h1>I need speed</h1>
+    <main>
+      <p id="value">x1</p>
+      <input class="slider" id="range" type="range" min="10" max="500" value="100">
+      <br>
+      <button id="set50" class="button">x0.5</button>
+      <button id="set100" class="button">x1</button>
+      <button id="set150" class="button">x1.5</button>
+      <button id="set175" class="button">x1.75</button>
+      <button id="set200" class="button">x2</button>
+      <br>
+      <button id="more">I need more speed...</button>
+      <div class="content">
+        <input id="number" value="1" type="number"> (max 16 😀)
+      </div>
+    </main>
+    <footer>
+      <p>Made by <a href="https://github.com/jaanonim" target="_blank">jaanonim</a></p>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+
+  <!--
+    This HTML file opens when you click on icon from the toolbar.
+
+    To begin the development, run `npm run watch`.
+    To create a production bundle, use `npm run build`.
+  -->
+</body>
+
+</html>
