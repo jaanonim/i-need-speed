@@ -1,12 +1,20 @@
 "use strict";
 
-// With background scripts you can communicate with popup
-// and contentScript files.
-// For more information on background script,
-// See https://developer.chrome.com/extensions/background_pages
-
-// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//     console.log(request);
-//     sendResponse({});
-//     return true;
-// });
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action === "openWindow") {
+        chrome.windows.create({
+            url: "popup.html",
+            type: "popup",
+            height: 300,
+            width: 350,
+        });
+    } else if (message.type == "SET" || message.type == "GET") {
+        chrome.tabs.query(
+            { currentWindow: true, active: true },
+            function (tabs) {
+                const activeTab = tabs[0];
+                chrome.tabs.sendMessage(activeTab.id, message, () => {});
+            }
+        );
+    }
+});

@@ -32,10 +32,7 @@ function setSpeed(v) {
 }
 
 function sendMsg(msg, callback) {
-    chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-        var activeTab = tabs[0];
-        chrome.tabs.sendMessage(activeTab.id, msg, callback);
-    });
+    chrome.runtime.sendMessage(msg);
 }
 
 document.getElementById("number").addEventListener("change", function () {
@@ -63,7 +60,16 @@ document.getElementById("set50").addEventListener("click", () => {
     setSpeed(0.5);
 });
 
+document.getElementById("openWindow").addEventListener("click", () => {
+    chrome.runtime.sendMessage({ action: "openWindow" });
+});
+
 sendMsg({ type: "GET" }, (res) => {
     console.log(res.value);
     setSpeed(res.value);
+});
+
+chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+    const activeTab = tabs[0];
+    console.log(activeTab);
 });
